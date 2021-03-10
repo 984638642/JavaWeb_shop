@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <!--servlet-name标签 给Servlet程序起个别名-->
+    <!--<servlet>-->
+    <!--<servlet-name>HelloServlet</servlet-name>-->
+    <!--<servlet-class>com.webservlet.HelloServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>HelloServlet</servlet-name>-->
+    <!-- /斜杠 在后端解析时,表示的地址是:http://ip:port/工程路经/ (后端除了重定向外的url) -->
+    <!-- /斜杠 在前端解析时,表示的地址是:http://ip:port/ (出现的地方：前端页面 后端的重定向) -->
+     <!--http://localhost:8080/demo0305/ -->
+     <!--url-pattern一定要以斜杠开头-->
+    <!--<url-pattern>/hello</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<servlet>-->
+    <!--<servlet-name>HelloServlet2</servlet-name>-->
+    <!--<servlet-class>com.webservlet.HelloServlet2</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>HelloServlet2</servlet-name>-->
+    <!--<url-pattern>/hello2</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>Demo02Servlet</servlet-name>
+        <servlet-class>com.shop.servlet.Demo02Servlet</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>Http://www.baidu.com</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo02Servlet</servlet-name>
+        <url-pattern>/demo02</url-pattern>
+    </servlet-mapping>
+
+
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>age</param-name>
+        <param-value>20</param-value>
+    </context-param>
+</web-app>
