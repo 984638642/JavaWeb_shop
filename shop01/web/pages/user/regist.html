@@ -1,0 +1,187 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>网上商城会员注册页面</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/style.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .login_form {
+            height: 420px;
+            margin-top: 25px;
+        }
+
+        .tip {
+            color: red;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            // Request.prototype
+            // $("body").getAttribute("tip")
+            // console.log(trequest.from().att);
+            $("#username").blur(function () {
+                usernameTip();
+            });
+            $("#password").blur(function () {
+                passwordTip();
+            });
+            $("#repwd").blur(function () {
+                repwdTip();
+            });
+            $("#email").blur(function () {
+                emailTip();
+            });
+            $("#code").blur(function () {
+                codeTip();
+            });
+            $("#sub_btn").click(function () {
+                var onTip = true;
+                if (!usernameTip()) {
+                    onTip = false;
+                }
+                if (!passwordTip()) {
+                    onTip = false;
+                }
+                if (!repwdTip()) {
+                    onTip = false;
+                }
+                if (!emailTip()) {
+                    onTip = false;
+                }
+                if (!codeTip()) {
+                    onTip = false;
+                }
+                return onTip;
+            });
+        });
+
+        function usernameTip() {
+            var username = $("#username").val();
+            if (!(/\w{5,12}/.test(username))) {
+                $("#username+span").css("display", "inline");
+                return false;
+            } else {
+                $("#username+span").css("display", "none");
+                return true;
+            }
+        }
+
+        function passwordTip() {
+            var password = $("#password").val();
+            if (!(/\w{5,12}/.test(password))) {
+                $("#password+span").css("display", "inline");
+                return false;
+            } else {
+                $("#password+span").css("display", "none");
+                return true;
+            }
+        }
+
+        function repwdTip() {
+            var password = $("#password").val();
+            var repwd = $("#repwd").val();
+            if ((password != repwd) || !repwd) {
+                $("#repwd +span").css("display", "inline");
+                return false;
+            } else {
+                $("#repwd +span").css("display", "none");
+                return true;
+            }
+        }
+
+        function emailTip() {
+            var email = $("#email").val();
+            if (!(/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/.test(email))) {
+                $("#email +span").css("display", "inline");
+                return false;
+            } else {
+                $("#email+span").css("display", "none");
+                return true;
+            }
+        }
+
+        function codeTip() {
+            var code = $("#code").val().length;
+            if (code != 4) {
+                $("#code + img + span").css("display", "inline");
+                return false;
+            } else {
+                $("#code + img + span").css("display", "none");
+                return true;
+            }
+        }
+
+        function imgClick() {
+            $("#img").prop("src", "http://localhost:8080/VerifyCode.do?" + new Date());
+        }
+    </script>
+</head>
+<body>
+<div id="login_header">
+    <img class="logo_img" alt="" src="../../static/img/logo.gif">
+</div>
+
+<div class="login_banner">
+
+    <div id="l_content">
+        <span class="login_word">欢迎注册</span>
+    </div>
+
+    <div id="content">
+        <div class="login_form">
+            <div class="login_box">
+                <div class="tit">
+                    <h1>注册网上商城会员</h1>
+                    <span class="errorMsg"></span>
+                </div>
+                <br>
+                <div class="form">
+                    <form action="/regist.do" method="post">
+                        <label>用户名称：</label>
+                        <input type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1" name="username"
+                               id="username"/>
+                        <span class="tip">必须由字母，数字下划线组成，并且长度为5到12位!</span>
+                        <br/>
+                        <br/>
+                        <label>用户密码：</label>
+                        <input type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password"
+                               id="password"/>
+                        <span class="tip">必须由字母，数字下划线组成，并且长度为5到12位!</span>
+                        <br/>
+                        <br/>
+                        <label>确认密码：</label>
+                        <input type="password" placeholder="确认密码" autocomplete="off" tabindex="1" name="repwd"
+                               id="repwd"/>
+                        <span class="tip">和密码不相同!</span>
+                        <br/>
+                        <br/>
+                        <label>电子邮件：</label>
+                        <input type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email"
+                               id="email"/>
+                        <span class="tip">例如：xxxxx@xxx.com!</span>
+                        <br/>
+                        <br/>&nbsp;&nbsp;
+                        <label>验证码：</label>
+                        <input type="text" placeholder="请输入验证码" id="code"/>
+                        <img src="http://localhost:8080/VerifyCode.do" id="img" onclick="imgClick()">
+                        <span class="tip">验证码格式错误!</span>
+                        <br/>
+                        <br/>
+                        <input type="submit" value="注册" id="sub_btn"/>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="bottom">
+			<span>
+				网上商城.Copyright &copy;2020
+			</span>
+</div>
+</body>
+</html>
